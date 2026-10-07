@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Сюда вставь СВЕЖИЙ cURL запроса searchApis и сохрани как curl.txt (без .example).
+#
+# Как получить:
+#   1. Открой https://rapidapi.com/ , залогинься.
+#   2. F12 -> вкладка Network -> фильтр Fetch/XHR.
+#   3. В поиске набери любой запрос (напр. youtube).
+#   4. Найди запрос на  gateway/graphql  с operationName searchApis
+#      (в теле --data-raw будет "operationName":"searchApis").
+#   5. ПКМ по нему -> Copy -> "Copy as cURL (cmd)" ИЛИ "Copy as cURL (bash)".
+#   6. Вставь всё сюда, сохрани файл как  curl.txt  в этой папке.
+#
+# Парсеру нужны из этого cURL: cookie, csrf-token, x-entity-id, user-agent,
+# и (опционально) privateApisJwt. Сам GraphQL-запрос захардкожен в коде — его
+# содержимое из cURL не используется, так что не страшно, если тело кривовато.
+#
+# ВАЖНО: cf_clearance / __cf_bm живут ~1–2 часа и привязаны к твоему IP+браузеру.
+# Получишь "HTTP 403 ... обнови curl.txt" — просто пересними cURL и вставь заново.
+# ─────────────────────────────────────────────────────────────────────────────
+
+curl "https://rapidapi.com/gateway/graphql" ^
+  -H "content-type: application/json" ^
+  -H "rapid-client: hub-service" ^
+  -H "csrf-token: <ВСТАВЬ>" ^
+  -H "x-entity-id: <ВСТАВЬ>" ^
+  -b "cf_clearance=<...>; jwt_auth=<...>; _csrf=<...>; connect.sid=<...>; rapidapi-context-id=<...>" ^
+  -H "user-agent: Mozilla/5.0 ..." ^
+  --data-raw "{...operationName searchApis...}"

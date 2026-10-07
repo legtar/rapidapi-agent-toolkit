@@ -1,0 +1,21 @@
+# В этих файлах — живые cookie/токены и ключи. Не коммитить!
+curl.txt
+curl_*.txt
+keys.json
+secrets.json
+.env
+
+# Результаты экспорта
+*.csv
+*.json
+!package.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+provider_curl.txt
+*.log
+*.stdout
+*.html
